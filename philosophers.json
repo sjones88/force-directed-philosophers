@@ -1,0 +1,37 @@
+{
+	"nodes": [
+		{"id": "Plato", "era": "Ancient Greek"},
+		{"id": "Aristotle", "era": "Ancient Greek"},
+		{"id": "Nietzsche", "era": "19th-century"},
+		{"id": "Schopenhauer", "era": "19th-century"},
+		{"id": "Spinoza", "era": "17th-century"},
+		{"id": "Albert Camus", "era": "20th-century"},
+		{"id": "Martin Heidegger", "era": "20th-century"},
+		{"id": "Jean-Paul Sartre", "era": "20th-century"},
+		{"id": "John Dewey", "era": "20th-century"},
+		{"id": "William James", "era": "19th-century"},
+		{"id": "Charles Sanders Peirce", "era": "19th-century"},
+		{"id": "Noam Chomsky", "era": "Contemporary"},
+		{"id": "Cornel West", "era": "Contemporary"},
+		{"id": "Richard Rorty", "era": "20th-century"},
+		{"id": "Wittgenstein"},
+		{"id": "Quine"},
+		{"id": "Rawls"},
+		{"id": "Thomas Kuhn"},
+		{"id": "Michel Foucault"},
+		{"id": "Jacques Derrida", "era": "20th-century"},
+		
+	],
+	"links": [
+		{"source": "James", "target": "Dewey"},
+		{"source": "Peirce", "target": "Dewey"},
+		{"source": "Peirce", "target": "James"},
+		{"source": "Plato", "target": "Aristotle"},
+		{"source": "Aristotle", "target": "Dewey"},
+		{"source": "Nietzsche", "target": "Camus"},
+		{"source": "Nietzsche", "target": "Sartre"},
+		{"source": "Nietzsche", "target": "Heidegger"},
+		{"source": "Dewey", "target": "Chomsky"},
+		{"source": "Dewey", "target": "West"},
+	]
+}

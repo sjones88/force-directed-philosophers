@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<style type="text/css">
+
+	.link {
+		stroke: #9ecae1;
+		stroke-opacity: 0.6;
+		stroke-width: 1.5px;
+	}
+
+	.node circle {
+		stroke: #fff;
+		stroke-width: 1.5px;
+	}
+
+</style>
+<svg width="1200" height="800"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+	var graph = 
+		{
+			"name": "Descartes, Rene",
+			"works": [
+				"Meditiationes De Prima Philosophia (Meditations on First Philosophy)",
+				"Discours de la methode (Discourse on the Method)",
+				"Principia Philosophiae (Principles of Philosophy)",
+				"Geometria (Geometry)"
+			],
+			"categories": [
+					"Cogito ergo sum",
+					"method of doubt",
+					"Cartesian coordinate system",
+					"Cartesian dualism",
+					"ontological argument for the existence of God",
+					"rationalism",
+					"17th-century"
+			],
+			"influenced": [
+				{
+					"name": "Hobbes, Thomas",
+					"categories": [],
+					"influenced": []
+				},
+				{
+					"name": "Spinoza, Baruch",
+					"categories": [],
+					"influenced": []
+				},
+				{
+					"name": "Bacon, Francis",
+					"categories": [],
+					"influenced": []
+				},
+				{
+					"name": "Locke, John",
+					"works": [
+						"Two Treatises of Government",
+						"A Letter Concerning Toleration",
+						"An Essay Concerning Human Understanding",
+						"Some Thoughts Concerning Education",
+						"Of the Conduct of the Understanding"
+					],
+					"categories": [
+							"tabula rasa",
+							"state of nature",
+							"17th-century",
+							"no innate ideas",
+							"empiricism"
+					],
+					"influenced": [
+						{
+							"name": "Hume, David",
+							"categories": [
+									"18th-century",
+									"empiricism",
+									"naturalism",
+									"problem of induction",
+									"association of ideas"
+							],
+							"influenced": [
+								{
+									"name": "Burke, Edmund",
+									"categories": [],
+									"influenced": []
+								},
+								{
+									"name": "Mill, John Stuart",
+									"categories": [
+											"classical economics",
+											"empiricism",
+											"utilitarianism",
+											"liberalism",
+											"political philosophy",
+											"ethics",
+											"economics",
+											"inductive logic",
+											"scientific method",
+											"19th-century"
+										],
+									"influenced": [
+										{
+											"name": "Rawls, John",
+											"categories": [],
+											"influenced": []
+										},
+										{
+											"name": "Russell, Bertrand",
+											"categories": [],
+											"influenced": []
+										},
+										{
+											"name": "Berlin, Isaiah",
+											"categories": [],
+											"influenced": []
+										},
+										{
+											"name": "Popper, Karl",
+											"categories": [],
+											"influenced": []
+										},
+										{
+											"name": "Dworkin, Ronald",
+											"categories": [],
+											"influenced": []
+										},
+										{
+											"name": "Keynes, John Maynard",
+											"categories": [],
+											"influenced": []
+										},
+										{
+											"name": "Friedman, Milton",
+											"categories": [],
+											"influenced": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Paine, Thomas",
+							"categories": [],
+							"influenced": []
+						},
+						{
+							"name": "Kant, Immanuel",
+							"categories": [],
+							"influenced": []
+						},
+						{
+							"name": "Smith, Adam",
+							"categories": [],
+							"influenced": []
+						}
+					]
+				},
+				{
+					"name": "Leibniz, Gottfried Wilhelm",
+					"categories": [],
+					"influenced": []
+				},
+				{
+					"name": "Pascal, Blaise",
+					"categories": [],
+					"influenced": []
+				}
+			]
+		}
+
+	var svg = d3.select('svg'),
+			height = +svg.attr('height'),
+			width = +svg.attr('width'),
+			g = svg.append('g').attr('transform', 'translate(40,0)');
+
+
+	var root = d3.hierarchy(graph, (d) => {
+		return d.influenced;
+	});
+
+	var tree = d3.tree(root)
+			.size([height, width]);
+
+	var node = g.selectAll('.node')
+			.data(root.descendants())
+		.enter().append('g')
+			.attr('class', '.node');
+
+	node.append('circle')
+		.attr('r', 2.5);
+
+	function flatten(root) {
+		let nodes = [], i = 0;
+
+		function recurse(node) {
+			if (node.influenced) node.influenced.forEach(recurse);
+			if (!node.id) node.id = ++i;
+			nodes.push(node);
+		}
+
+		recurse(root);
+		return nodes;
+	}
+
+</script>
+</html>
+
+
+
+
+
